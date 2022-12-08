@@ -2,6 +2,7 @@ import React, { useState, useEffect, createContext } from 'react';
 import ReactDOM from 'react-dom';
 import { connectors } from './connectors';
 import { useWeb3React } from '@web3-react/core';
+import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 import { toHex, truncateAddress } from "./utils";
 import TreasuryABI from './treasuryAbi.json';
 import './style.css';
@@ -175,7 +176,7 @@ function Header() {
                 <div className="relative p-6 flex-auto">
                   <ul>
                     <li className='popup_wallet_list'><a onClick={() => {activate(connectors.Injected);setProvider("Injected");setShowModal(false);}} className='popup_walletconnect popup_wallet_icon cursor-pointer'>Metamask <img src='/metamaxicon.png' /></a></li>
-                    <li className='popup_wallet_list'><a onClick={() => {activate(connectors.walletConnect);setProvider("walletConnect");setShowModal(false);}} className='cursor-pointer popup_walletconnect popup_wallet_icon'>WalletConnect <img src='/walletconnecticon.png' /></a></li>
+                    <li className='popup_wallet_list'><a onClick={() => {activate(connectors.walletConnect);setProvider("WalletConnect");setShowModal(false);}} className='cursor-pointer popup_walletconnect popup_wallet_icon'>WalletConnect <img src='/walletconnecticon.png' /></a></li>
                     <li className='popup_wallet_list'><a onClick={() => {activate(connectors.Injected);setProvider("Injected");setShowModal(false);}} className='popup_walletconnect popup_wallet_icon'>TrustWallet <img src='/trustwallet.png' /></a></li>
                     <li className='popup_wallet_list'><a onClick={() => {activate(connectors.bsc);setProvider("bsc");setShowModal(false);}} className='cursor-pointer popup_walletconnect popup_wallet_icon'>Binance chain Wallet <img src='/binanceicon.png' /></a></li>
                     <li className='popup_wallet_list'><a onClick={() => {activate(connectors.Injected);setProvider("Injected");setShowModal(false);}} href='#' className='popup_walletconnect popup_wallet_icon'>SafePal Wallet <img src='/safewallet.png' /></a></li>

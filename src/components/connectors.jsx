@@ -7,12 +7,18 @@ const bsc = new BscConnector({
     supportedChainIds: [56] // later on 1 ethereum mainnet and 3 ethereum ropsten will be supported
   });
 
-  const walletconnect = new WalletConnectConnector({ 
-    rpcUrl: { 
-      '56': "https://bsc-dataseed.binance.org"
+  const walletconnect = new WalletConnectConnector({
+    rpc: {
+      56: "https://bsc-dataseed1.binance.org",
+      // ...
     },
-    supportedChainIds: [56],
-    qrcode: true, 
+    qrcodeModalOptions: {
+      mobileLinks: ["trust"],
+    },
+    bridge: "https://bridge.walletconnect.org",
+    qrcode: true,
+    chainId: 56,
+    pollingInterval: 8000,
   });
 
 const Injected = new InjectedConnector({
