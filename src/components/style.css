@@ -1,0 +1,48 @@
+.gap-6 {
+    gap: 4rem;
+    margin: 2.5rem 5rem;
+}
+.grid-cols-mobile {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.popup_walletconnect {
+    color: #0063b5;
+    padding: 5px 10px; 
+    font-size: 14px; 
+    font-weight: 600;
+}
+.popup_wallet_list {
+    border: 1px solid #1e82ce;
+    margin: 0 0 12px;
+    border-radius: 5px;
+    padding: 0px;
+}
+.popup_wallet_icon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.css-1s2u09g-control {
+    background-color: #E8F5FF !important;
+    border-color: transparent !important;
+    border-radius: 10px !important;
+    border-color: transparent !important;
+}
+.css-26l3qy-menu {
+    background-color:#E8F5FF !important;
+}
+.css-1pahdxg-control {
+    background-color: #E8F5FF !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+    border: none !important;
+}
+.css-1okebmr-indicatorSeparator {
+    display: none !important;
+}
+.css-319lph-ValueContainer {
+    padding: 0px !important;
+}
+.css-tlfecz-indicatorContainer {
+    padding-left: 0px !important;
+}
