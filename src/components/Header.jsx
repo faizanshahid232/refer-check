@@ -10,6 +10,10 @@ function Header() {
     const [showModal, setShowModal] = useState(false);
     const { activate, deactivate, account, chainId, active} = useWeb3React();
     const [referValid, setreferValid] = useState(null);
+    
+    const [refer, setRefer] = useState("");
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
 
     const Web3 = require("web3");
     const CONTRACT_ADDRESS = '0x59a7Dc57EF280a69408a17F064721fB664ec9c31';     
@@ -50,6 +54,49 @@ function Header() {
         deactivate();
     };
 
+    let handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ referer: refer, email: email })
+            };
+            const response = await fetch('https://airdrop-api.onrender.com/registerairdrop', requestOptions);
+            const data = await response.json();
+            console.log(data);
+            if (data.code === 200) {
+                setRefer("");
+                setEmail("");
+                setMessage(data.message);
+                console.log("Success");
+            } else {
+                setMessage(data.detail);
+                console.log("Some error occured: "+ data.detail);
+            }
+            /*let res = await fetch("https://airdrop-api.onrender.com/registerairdrop", {
+                method: "POST",
+                headers:{"Content-Type":"application/json","accept":"application/json"},
+                body: JSON.stringify({
+                referer: refer,
+                email: email,
+                }),
+            });
+            let resJson = await res.json();
+            if (res.status === 200) {
+                setRefer("");
+                setEmail("");
+                console.log("Success");
+            } else {
+                console.log("Some error occured");
+            }*/
+            console.log("Refer Code: "+refer);
+            console.log("Email: "+ email);
+        }  catch(err) {
+            console.log(err);
+        }
+    };
+
     return(
         <>
         <div className="bg-[#0f1015] items-center justify-between h-16">
@@ -72,17 +119,27 @@ function Header() {
                             {
                                 referValid ? (
                                     <>
-                                        <form>
-                                            <div className='flex flex-col mt-8'>
-                                                <input type="text" id="refer_code" className='text-[#c4d2fa] bg-[#383855] rounded-lg p-2' placeholder="Enter your refer code" required />
-                                                <input type="email" id="email" className='text-[#c4d2fa] bg-[#383855] rounded-lg p-2 mt-4' placeholder="Enter your email" required />
-                                                <button type="submit" className='text-white bg-[#3d3d73] px-6 py-2 rounded-lg mt-4'>Submit</button>
-                                            </div>
-                                        </form>
+                                        <h3 className='text-[#c4d2fa] mt-4'>ACCESS DENIED</h3>
                                     </>
                                 ) : (
                                     <>
-                                        <h3 className='text-[#c4d2fa]'>No Parent Found</h3>
+                                        <form onSubmit={handleSubmit}>
+                                            <div className='flex flex-col mt-8'>
+                                                <input 
+                                                value={refer}
+                                                type="text" 
+                                                id="refer_code" 
+                                                onChange={(e) => setRefer(e.target.value)}
+                                                className='text-[#c4d2fa] bg-[#383855] rounded-lg p-2' placeholder="Enter your refer code" required />
+                                                <input 
+                                                value={email}
+                                                type="email" 
+                                                id="email" 
+                                                onChange={(e) => setEmail(e.target.value)}
+                                                className='text-[#c4d2fa] bg-[#383855] rounded-lg p-2 mt-4' placeholder="Enter your email" required />
+                                                <button type="submit" className='text-white bg-[#3d3d73] px-6 py-2 rounded-lg mt-4'>Submit</button>
+                                            </div>
+                                        </form>
                                     </>
                                 )
                             }
@@ -91,6 +148,7 @@ function Header() {
                     )
                 }
             </div>
+            <h3 className='text-center text-[#c4d2fa] mt-4'>{message}</h3>
         </div>
         </div>
         {showModal ? (
