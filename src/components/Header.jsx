@@ -105,7 +105,7 @@ function Header() {
                 <p className='hidden sm:block px-1 w-full text-xs text-[#fff]'></p>
             </div>
             <div className='relative flex flex-col items-center min-h-screen overflow-hidden h-full g-6 bg-[#0f1015]'>
-            <div className="bg-[#25252f] flex flex-col items-center rounded-[20px] p-[30px] w-[50%] m-6">
+            <div className="bg-[#25252f] flex flex-col items-center rounded-[20px] p-[30px] sm:w-[80%] md:w-[50%] lg:w-[50%] m-6">
                 {
                     !active ? (
                         <button onClick={() => setShowModal(true)} className='text-white bg-[#3d3d73] px-6 py-2 rounded-lg'>Connect Wallet</button>
